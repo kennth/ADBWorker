@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project ADBWorker with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="D:/ADBWorker"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/adblog.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="com.funmmix.app.ADBLogger"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ log4j-1.2.15.jar mysql-connector-java-5.1.0-bin.jar sqlite-jdbc-3.8.6.jar tomcat-dbcp.jar MSDK_Android_2.8.1a_svn57793.jar commons-dbutils-1.6.jar commons-io-2.4.jar pinyin4j-2.5.0.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="${dir.buildfile}/bin"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="log4j-1.2.15.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="mysql-connector-java-5.1.0-bin.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="sqlite-jdbc-3.8.6.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="tomcat-dbcp.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="MSDK_Android_2.8.1a_svn57793.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="commons-dbutils-1.6.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="commons-io-2.4.jar"/>
+            <zipfileset dir="${dir.buildfile}/lib" includes="pinyin4j-2.5.0.jar"/>
+        </jar>
+    </target>
+</project>

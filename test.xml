@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project ADBWorker with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR Export Wizard-->
+    <!--ANT 1.7 is required                                        -->
+    <target name="create_run_jar">
+        <jar destfile="D:/ADBWorker/test.jar">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="com.funmmix.app.Test"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ log4j-1.2.15.jar mysql-connector-java-5.1.0-bin.jar sqlite-jdbc-3.8.6.jar tomcat-dbcp.jar MSDK_Android_2.8.1a_svn57793.jar commons-dbutils-1.6.jar commons-io-2.4.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="D:/workspace/ADBWorker/bin"/>
+            <zipfileset dir="D:\workspace\ADBWorker\lib" includes="log4j-1.2.15.jar"/>
+            <zipfileset dir="D:\workspace\ADBWorker\lib" includes="mysql-connector-java-5.1.0-bin.jar"/>
+            <zipfileset dir="D:\workspace\ADBWorker\lib" includes="sqlite-jdbc-3.8.6.jar"/>
+            <zipfileset dir="D:\workspace\ADBWorker\lib" includes="tomcat-dbcp.jar"/>
+            <zipfileset dir="D:\workspace\ADBWorker\lib" includes="MSDK_Android_2.8.1a_svn57793.jar"/>
+            <zipfileset dir="D:\workspace\ADBWorker\lib" includes="commons-dbutils-1.6.jar"/>
+            <zipfileset dir="D:\workspace\ADBWorker\lib" includes="commons-io-2.4.jar"/>
+        </jar>
+    </target>
+</project>
