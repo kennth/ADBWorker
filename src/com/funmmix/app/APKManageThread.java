@@ -45,7 +45,7 @@ public class APKManageThread  extends Thread {
 		log.info("start init ");
 		try {
 			conn = DBMgr.getCon("helper");
-			activity = (String) runner.query(conn, "select activity from tcmcctask where left(worker,3)<=" + device.getId() + " and right(worker,3)>="+ device.getId() , 
+			activity = (String) runner.query(conn, "select activity,apkname,status from tcmcctask where left(worker,3)<=" + device.getId() + " and right(worker,3)>="+ device.getId() , 
 					new MapHandler()).get("activity");	
 			log.info(activity);			
 			device = runner.query(conn, "select * from tdevice where id=" + device.getId(), new BeanHandler<Device>(Device.class));

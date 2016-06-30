@@ -45,7 +45,7 @@ public class Test {
 		// fixWIFI(args[0]);
 		// addDevices();
 		// clearReport();
-		//startMTKTools(args[0]);
+		startMTKTools(args[0]);
 		// startMTKTools("70");
 		// genIpconfigs();
 		// genReport();
@@ -55,9 +55,9 @@ public class Test {
 		// genFBZYAccount();
 		// fixFBTenddata();		
 		//genGameInfo(13);
-		parseAPK("kjyshw");
-		parseAPK("ksjsbbg");
-		parseAPK("xcmbd");
+		//parseAPK("kjyshw");
+		//parseAPK("ksjsbbg");
+		//parseAPK("xcmbd");
 		//genGameInfo(34);
 		//genGameList();
 		/*for(int i=13;i<=18;i++)
@@ -697,14 +697,10 @@ public class Test {
 			String cmd = "adb -s " + dev.getDevice() + " shell logcat |grep 'Activity' ";
 			adb = new ADBUtils(dev, queue, conn);
 			ADBLogger adblog = new ADBLogger(adb.getQueue(), cmd);
-			adblog.start();
-			while(1==1){
-				while(adb.getQueue().size()>0)
-					System.out.println(adb.getQueue().poll());
-			}
-			//adb.reRwritePhoneInfo();
+			adblog.start();			
+			adb.reRwritePhoneInfo();
 			// adb.reRwritePhoneInfo("860968054563449",10,1);
-			//adblog.setStop(true);
+			adblog.setStop(true);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {
