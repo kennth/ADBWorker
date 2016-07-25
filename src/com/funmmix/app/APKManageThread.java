@@ -45,7 +45,7 @@ public class APKManageThread  extends Thread {
 		log.info("start init ");
 		try {
 			conn = DBMgr.getCon("helper");
-			activity = (String) runner.query(conn, "select activity,apkname,status from tcmcctask where left(worker,3)<=" + device.getId() + " and right(worker,3)>="+ device.getId() , 
+			activity = (String) runner.query(conn, "select activity,apkname,status from tcmcctask where status>=0 and left(worker,3)<=" + device.getId() + " and right(worker,3)>="+ device.getId() , 
 					new MapHandler()).get("activity");	
 			log.info(activity);			
 			device = runner.query(conn, "select * from tdevice where id=" + device.getId(), new BeanHandler<Device>(Device.class));
@@ -83,19 +83,22 @@ public class APKManageThread  extends Thread {
 			adblog.start();
 			String tmp;
 			String pack = activity.substring(0,activity.indexOf("/"));			
+			long st = System.currentTimeMillis();
 			do {
 				sleep(1000);
 				while(adb.getQueue().size()>0){
 					tmp = adb.getQueue().poll();
-					//log.info(tmp);
-					if(tmp.indexOf("died")>-1 && tmp.indexOf(activity)>-1){
+					if(tmp.indexOf("died")>-1 && tmp.indexOf(pack)>-1){
 						log.info("Game died,restart it!");
 						adb.startActivity(activity, "Start proc " + pack + " for activity");
 					}else{
-						//log.info("wait");
 						sleep(1000);
 					}
-				}				
+				}	
+				if (System.currentTimeMillis() - st > 60 * 1000) {
+					log.info("APKManageThread is Working!");
+					st = System.currentTimeMillis();
+				}
 			} while (1==1);
 		} catch (Exception e) {
 			log.info(e);
